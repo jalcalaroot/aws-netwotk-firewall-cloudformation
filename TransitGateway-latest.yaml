@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: >-
+  AWS CloudFormation Transit Gateway.
+
+Resources:
+# Create Transit Gateway:
+  Tgw:
+    Type: AWS::EC2::TransitGateway
+    Properties:
+      AmazonSideAsn: 64512
+      AutoAcceptSharedAttachments: enable
+      DefaultRouteTableAssociation: disable
+      DefaultRouteTablePropagation: disable
+      Description: Transit Gateway Architecture
+      DnsSupport: enable
+      VpnEcmpSupport: enable
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-tgw"
+
+# Create Transit Gateway Route Tables:
+  TgwInternalRT:
+    Type: AWS::EC2::TransitGatewayRouteTable
+    Properties: 
+      Tags: 
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-tgw-main-rt"   
+      TransitGatewayId: !Ref Tgw
+  
+Outputs:
+  TgwId:
+    Description: TGW ID
+    Value: !Ref Tgw
