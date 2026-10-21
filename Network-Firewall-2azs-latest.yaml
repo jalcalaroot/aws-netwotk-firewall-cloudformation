@@ -17,12 +17,10 @@ Parameters:
   TransitGatewayId:
     Type: String
     Description: 'Transit Gateway Id'
-    Default: 'tgw-0123456789abcdef0'
 
   TransitGatewayMainRouteTableId:
     Type: String
     Description: 'Transit Gateway Main Route Table Id'
-    Default: 'tgw-rtb-0123456789abcdef0'
 
   VPCCIDR:
     Type: String
